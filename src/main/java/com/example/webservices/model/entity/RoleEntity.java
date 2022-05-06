@@ -1,9 +1,6 @@
 package com.example.webservices.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
@@ -13,6 +10,11 @@ public class RoleEntity extends BaseEntity{
     public RoleEntity() {
     }
 
+    public RoleEntity(RoleNameEnum name) {
+        this.name = name;
+    }
+
+    @Column(name="name")
     @Enumerated(EnumType.STRING)
     public RoleNameEnum getRole() {
         return name;

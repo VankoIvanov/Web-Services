@@ -17,6 +17,12 @@ public class UserEntity extends BaseEntity{
     public UserEntity() {
     }
 
+    public UserEntity(String password, String email, String username) {
+        this.password = password;
+        this.email = email;
+        this.username = username;
+    }
+
     @Column(nullable = false)
     public String getFullName() {
         return fullName;
