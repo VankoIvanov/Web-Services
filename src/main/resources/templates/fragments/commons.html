@@ -22,7 +22,7 @@
 <header th:fragment="navigation">
     <nav class="main-nav">
         <ul>
-            <th:block >
+            <th:block sec:authorize="!isAuthenticated()">
                 <li>
                     <a href="/">Home</a>
                 </li>
@@ -36,16 +36,18 @@
                     <a href="/about">About</a>
                 </li>
             </th:block>
-            <th:block  >
+            <th:block sec:authorize="isAuthenticated()">
                 <li>
-                    <a href="/routes/add">Add new route</a>
+                    <a href="/routes/add"> Add new route</a>
                 </li>
                 <li>
                     <a>Profile</a>
                 </li>
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                 <li>
                     <a href="/admin">Admin</a>
                 </li>
+                </th:block>
                 <li>
                     <a href="/users/logout">Logout</a>
                 </li>

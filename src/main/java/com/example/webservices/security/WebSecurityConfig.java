@@ -76,15 +76,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .antMatchers("/", "/users/login", "/users/register", "/gallery").permitAll()
-                .antMatchers("/comments/pending", "/comments/archived",
-                        "/comments/approve/**", "/comments/archive/**", "/comments/delete/**",
-                        "/comments/pending-comments", "/comments/archived-comments").hasAnyRole("MODERATOR")
+                .antMatchers("/", "/users/login", "/users/register", "/about").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/users/login")
-                .usernameParameter("email")
+                .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/")
                 .failureForwardUrl("/users/login-error")
