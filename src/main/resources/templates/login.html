@@ -1,9 +1,14 @@
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:replace="fragments/commons::head"></head>
 <body>
 <main class="p-5 align-content-center bg-blur my-register-div">
     <h1 class="    border-bottom mb-5">Login</h1>
+    <div>
+        <a class="btn btn-lg btn-secondary fab fa-google"
+           th:href="@{/oauth2/authorization/google}">&nbsp;&nbsp;Continue with Google</a>
+    </div>
+    <div>&nbsp;</div>
     <div class="d-flex justify-content-center">
 
         <div class="row g-3 align-items-center">

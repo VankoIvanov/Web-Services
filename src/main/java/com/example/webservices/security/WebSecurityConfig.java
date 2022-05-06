@@ -2,6 +2,7 @@ package com.example.webservices.security;
 
 import com.example.webservices.security.jwt.AuthEntryPointJwt;
 import com.example.webservices.security.jwt.AuthTokenFilter;
+import com.example.webservices.security.oauth2.CustomerOAuth2UserService;
 import com.example.webservices.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -16,6 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.userinfo.CustomUserTypesOAuth2UserService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -86,6 +88,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .failureForwardUrl("/users/login-error")
                 .and()
+                .oauth2Login()
+                .loginPage("/users/login")
+                .userInfoEndpoint()
+                .userService(customerOAuth2UserService)
+                .and()
+                .and()
                 .logout()
                 .logoutUrl("/users/logout")
                 .logoutSuccessUrl("/")
@@ -93,4 +101,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID")
                 .and().cors().and().csrf().disable();
     }
+
+    @Autowired
+    private CustomerOAuth2UserService customerOAuth2UserService;
 }
