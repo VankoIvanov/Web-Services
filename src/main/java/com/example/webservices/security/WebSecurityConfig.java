@@ -3,6 +3,7 @@ package com.example.webservices.security;
 import com.example.webservices.security.jwt.AuthEntryPointJwt;
 import com.example.webservices.security.jwt.AuthTokenFilter;
 import com.example.webservices.security.oauth2.CustomerOAuth2UserService;
+import com.example.webservices.security.oauth2.OAuth2LoginSuccessHandler;
 import com.example.webservices.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -93,6 +94,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .userInfoEndpoint()
                 .userService(customerOAuth2UserService)
                 .and()
+                .successHandler(oAuth2LoginSuccessHandler)
                 .and()
                 .logout()
                 .logoutUrl("/users/logout")
@@ -104,4 +106,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private CustomerOAuth2UserService customerOAuth2UserService;
+
+    @Autowired
+    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 }

@@ -48,10 +48,16 @@ spring:
         registration:
           google:
             client-id: 981849740643-dgmgth3b5pudk7di0bb4gaqbv1cr1glk.apps.googleusercontent.com
-
+            client-secret: "${GOOGLE_API_SECRET}"
             scope:
               - email
               - profile
+          facebook:
+            client-id: 694859184962732
+            client-secret: "${FACEBOOK_API_SECRET}"
+            scope:
+              - email
+              - public_profile
 
 cloudinary:
   cloud-name: https-github-com-vankoivanov-web-service
