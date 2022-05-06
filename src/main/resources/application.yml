@@ -22,7 +22,7 @@ spring:
     #For MySQL 5
     #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     open-in-view: false
     properties:
       hibernate:
@@ -36,3 +36,25 @@ spring:
 
   #server:
     #port: 8081
+
+  bezkoder:
+    app:
+      jwtSecret: bezKoderSecretKey
+      jwtExpirationMs: 86400000
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 981849740643-dgmgth3b5pudk7di0bb4gaqbv1cr1glk.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+
+cloudinary:
+  cloud-name: https-github-com-vankoivanov-web-service
+  api-key: 654829793914841
+  api-secret: "${CLOUDINARY_API_SECRET}"
+
